@@ -61,6 +61,7 @@ void Game::RunLoop()
     while (mIsRunning)
     {
         ProcessInput();
+        GenerateOutput();
     }
 }
 
@@ -82,4 +83,19 @@ void Game::ProcessInput()
     {
         mIsRunning = false;
     }
+}
+
+void Game::GenerateOutput()
+{
+    SDL_SetRenderDrawColor(
+        mRenderer,
+        255,      //R
+        255,      //G
+        255,    //B
+        255     //A
+    );
+
+    SDL_RenderClear(mRenderer);
+
+    SDL_RenderPresent(mRenderer);
 }
