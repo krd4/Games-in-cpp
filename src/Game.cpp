@@ -1,8 +1,12 @@
 #include "Game.h"
 
+const int thickness = 15;
+
 Game::Game()
 :mWindow(nullptr)
 ,mIsRunning(true)
+,mHeight(768)
+,mWidth(1024)
 {
 	
 }
@@ -22,8 +26,8 @@ bool Game::Initialize()
         "title",
         100,
         100,
-        1024,
-        768,
+        mWidth,
+        mHeight,
         0 // Flags (0 for no flags set)
     );
 
@@ -88,14 +92,39 @@ void Game::ProcessInput()
 void Game::GenerateOutput()
 {
     SDL_SetRenderDrawColor(
+		mRenderer,
+		0,		// R
+		0,		// G 
+		255,	// B
+		255		// A
+	);
+
+    SDL_RenderClear(mRenderer);
+
+    SDL_SetRenderDrawColor(
         mRenderer,
         255,      //R
         255,      //G
-        255,    //B
-        255     //A
+        255,      //B
+        255       //A
     );
 
-    SDL_RenderClear(mRenderer);
+	SDL_Rect wall{
+		0,			// Top left x
+		0,			// Top left y
+		mWidth,		// Width
+		thickness	// Height
+	};
+	SDL_RenderFillRect(mRenderer, &wall);
+
+    wall.y = mHeight - thickness;
+	SDL_RenderFillRect(mRenderer, &wall);
+
+	wall.x = mWidth - thickness;
+	wall.y = 0;
+	wall.w = thickness;
+	wall.h = mHeight;
+	SDL_RenderFillRect(mRenderer, &wall);
 
     SDL_RenderPresent(mRenderer);
 }

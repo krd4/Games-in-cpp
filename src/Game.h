@@ -1,5 +1,6 @@
 #pragma once
 #include "SDL.h"
+#include "Vector.h"
 
 class Game 
 {
@@ -16,4 +17,8 @@ private:
     SDL_Window* mWindow;
     SDL_Renderer* mRenderer;
     bool mIsRunning;
+
+    Vector2 mBallPos;
+    int mWidth;
+    int mHeight;
 };
