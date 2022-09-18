@@ -19,6 +19,13 @@ private:
     bool mIsRunning;
 
     Vector2 mBallPos;
+    Vector2 mPaddlePos;
+    Vector2 mBallVel;
+    float mPaddleVel;
+    int mPaddleDir;
     int mWidth;
     int mHeight;
+    int paddleH;
+
+    Uint32 mTicksCount;
 };
